@@ -10,11 +10,6 @@
 
     <!--Description-->
     
-        <meta name="description" content="用户管理加用户进入root
-123useradd -m usernamepasswd usernamerocks sync users
-rocks 是为了同步用户数据
-1234userdel username #删除用户more &amp;#x2F;etc&amp;#x2F;passwd #确认删除对了用户！！！f">
-    
 
     <!--Author-->
     
@@ -23,7 +18,7 @@ rocks 是为了同步用户数据
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="hpc集群管理手册"/>
+        <meta property="og:title" content="CCMPG"/>
     
 
     <!--Open Graph Description-->
@@ -34,7 +29,7 @@ rocks 是为了同步用户数据
 
     <!--Type page-->
     
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
     
 
     <!--Page Cover-->
@@ -48,7 +43,7 @@ rocks 是为了同步用户数据
 
     <!-- Title -->
     
-    <title>hpc集群管理手册 - CCMPG</title>
+    <title>docker - CCMPG</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -131,7 +126,9 @@ rocks 是为了同步用户数据
 <div class="container">
 
     <!-- Main Content -->
-    <div class="row">
+    
+
+<div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -139,73 +136,25 @@ rocks 是为了同步用户数据
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
+            <h1 id="main-title" class="title">#docker</h1>
+        
     </div>
 </header>
 
-        <section class="main">
+        <section class="main archive-container">
             
-<div class="post">
-
-    <div class="post-header">
-        <h1 class="title">
-            <a href="/2018/11/02/cluster11-admin/">
-                hpc集群管理手册
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2018-11-02</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/集群使用手册/">集群使用手册</a>
-                </span>
-            
-        </div>
-    </div>
-
-    <div class="content">
-
-        <!-- Gallery -->
-        
-
-        <!-- Post Content -->
-        <h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><h4 id="加用户"><a href="#加用户" class="headerlink" title="加用户"></a>加用户</h4><p>进入root</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd -m username</span><br><span class="line">passwd username</span><br><span class="line">rocks sync users</span><br></pre></td></tr></table></figure>
-<p>rocks 是为了同步用户数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">userdel username #删除用户</span><br><span class="line">more &#x2F;etc&#x2F;passwd #确认删除对了用户！！！</span><br><span class="line">find &#x2F; -name &quot;*username*&quot; #查找所有与用户相关信息</span><br><span class="line">rm -rf dirname #删除数据</span><br></pre></td></tr></table></figure>
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><p>获取root</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root] # userdel username</span><br><span class="line">[root] # more &#x2F;etc&#x2F;passwd</span><br><span class="line">[root] # find &#x2F; -name &quot;*username*&quot;</span><br><span class="line">[root] # rm -rf dirname</span><br></pre></td></tr></table></figure>
-<p>查看passwd是为了再次确认要删除该用户，接下来是找到与该用户有关的文件，并彻底删除。</p>
-<h3 id="关闭某计算节点"><a href="#关闭某计算节点" class="headerlink" title="关闭某计算节点"></a>关闭某计算节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] # qmod -d all.q@compute-0-1.local</span><br></pre></td></tr></table></figure>
-
-<h3 id="hpc开机"><a href="#hpc开机" class="headerlink" title="hpc开机"></a>hpc开机</h3><p>第一步， 去楼下开机。。。。。。</p>
-<h3 id="hpc关机"><a href="#hpc关机" class="headerlink" title="hpc关机"></a>hpc关机</h3><p>关闭计算节点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] # rocks run host halt</span><br></pre></td></tr></table></figure>
-<p>关闭登录节点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] # shutdown -h now</span><br></pre></td></tr></table></figure>
-
-    </div>
-
-    
-
-    
-        <div class="post-tags">
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/cluster/">#cluster</a> <a href="/tags/admin/">#admin</a> <a href="/tags/system/">#system</a>
-        </div>
-    
-
-    <!-- Comments -->
-    
-
+                <div class="archive-post">
+    <a href="/2018/10/12/nginx-docker/">
+        <span class="archive-date">
+            Oct 2018
+        </span>
+        Docker Nginx网页服务搭建（附服务器购买续费指南）
+    </a>
 </div>
+            
         </section>
-
     </div>
 </div>
-
 
 </div>
 
