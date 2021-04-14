@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="以任务的方式提交matlab任务(recommoned)
+切记在要运行的 .m 文件的结尾加入 quit， 否则在任务结束后无法释放节点。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="John Doe">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用slurm在集群上使用matlab"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CCMPG"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    <!-- Title -->
+    
+    <title>使用slurm在集群上使用matlab - CCMPG</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/04/01/slurm-running-matlab/">
+                使用slurm在集群上使用matlab
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-04-01</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/集群使用手册/">集群使用手册</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="以任务的方式提交matlab任务-recommoned"><a href="#以任务的方式提交matlab任务-recommoned" class="headerlink" title="以任务的方式提交matlab任务(recommoned)"></a>以任务的方式提交matlab任务(recommoned)</h2><ul>
+<li><span style="color:red">切记在要运行的 <code>.m</code> 文件的结尾加入 <code>quit</code>， 否则在任务结束后无法释放节点。</span></li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><span style="color:red">切记提交的任务在要使用<em><strong>并行</strong></em>（parfor），否则会出现不满核占据单节点的情况，造成资源的浪费。并行详情咨询长春。</span></li>
+</ul>
+<p>slurm脚本模板为<code>matlab_job.sh</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash -l</span></span><br><span class="line"><span class="comment"># NOTE the -l flag!</span></span><br><span class="line"><span class="comment">#SBATCH -o test.std_%j.out</span></span><br><span class="line"><span class="comment">#SBATCH -J test</span></span><br><span class="line"><span class="comment">#SBATCH -e test.error.out</span></span><br><span class="line"><span class="comment"># Default in slurm</span></span><br><span class="line"><span class="comment"># Request 5 hours run time</span></span><br><span class="line"><span class="comment">#SBATCH -t 5:0:0</span></span><br><span class="line"><span class="comment"># Requiest 1 node and 4 cores in partition normal</span></span><br><span class="line"><span class="comment">#SBATCH -p inter_q -N 1 -n 4</span></span><br><span class="line"><span class="comment"># NOTE Each node has 12 cores</span></span><br><span class="line"></span><br><span class="line">module load matlab/R2016b</span><br><span class="line"></span><br><span class="line">matlab -nodisplay -nosplash -nojvm -r script</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中前三个参数<code>-nodisplay</code>, <code>-nosplash</code>, <code>-nojvm</code>保证了在命令行中而不是用图形界面执行matlab。<br>程序中使用并行时，<code>-singleCompThread</code>参数为程序中有并行代码时使用，确保了每个核不会多线程运行。由于matlab的<br>多维度编程的性能提升很大，在大的矩阵操作时可将此参数关闭（如上脚本所示），来实现多线程。</p>
+<p>参数<code>-r</code>后面紧跟所要运行的<code>.m</code>文件的文件名<span style="color:red">！！！注意不要写后缀，否则会出错！！！</span>。</p>
+<p>将脚本与要执行的<code>.m</code>文件放在相同文件夹下，运行<code>sbatch ./matlab_job.sh</code>即可。</p>
+<p>注意这里<code>#SBATCH -o</code> 和<code>#SBATCH -e</code> 后面跟的是标准输出和错误输出, <code>%j</code>代表的是你提交任务的id号, 以防止找不到提交任务的文件夹.</p>
+<h2 id="交互式的申请节点并进行matlab运算-not-recommoned"><a href="#交互式的申请节点并进行matlab运算-not-recommoned" class="headerlink" title="交互式的申请节点并进行matlab运算(not recommoned)"></a>交互式的申请节点并进行matlab运算(not recommoned)</h2><p><span style="color:red">两次&lt;ctrl+D&gt;: 切记在运行完交互式任务后手动退出计算节点，退出计算节点后还要退出子命令行，否则节点持续被占用。</span></p>
+<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><p>首先使用<code>salloc -p jpmid -N 1 -n 4</code>申请jpmid分区下1个节点4个核。<br>此时，会打开一个新的shell窗口。</p>
+<p>用<code>squeue</code>查看申请到的是哪个节点，记住节点名称比如<code>cn97103</code>，使用<code>ssh cn97103</code>进入该计算节点。</p>
+<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><p><code>module load matlab/R2016b</code><br>加载mablab可执行模块的到路径。</p>
+<h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><p>运行<code>matlab -nodisplay -nosplash -nojvm</code>打开命令行模式的matlab。</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/cluster/">#cluster</a> <a href="/tags/matlab/">#matlab</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a target="_blank" rel="noopener" href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2020/08/20/cluster-users/">cmp集群：用户手册</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/01/slurm-running-matlab/">使用slurm在集群上使用matlab</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/11/07/cluster11-users/">hpc集群：用户手册</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/11/02/cluster11-admin/">hpc集群管理手册</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/git%E7%9A%84%E4%BD%BF%E7%94%A8/">git的使用</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E6%95%99%E7%A8%8B/">文章发布教程</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Q-A/">Q&amp;A</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/%E9%9B%86%E7%BE%A4%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">集群使用手册</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://github.com/scut-ccmp">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://dribbble.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-dribbble"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://telegram.org/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-telegram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.behance.net/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-behance"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://500px.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-500px"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:test@example.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

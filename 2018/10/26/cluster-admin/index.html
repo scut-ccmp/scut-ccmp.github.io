@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="openhpc节点用户管理加用户获取root
+123[root] # useradd -m username[root] # passwd username[root] # wwsh file resync passwd shadow group
+-m 参数是为了在home目录下创建用户文件夹；ww">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="John Doe">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="cmp集群管理手册"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CCMPG"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    <!-- Title -->
+    
+    <title>cmp集群管理手册 - CCMPG</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/10/26/cluster-admin/">
+                cmp集群管理手册
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-10-26</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h3 id="openhpc节点用户管理"><a href="#openhpc节点用户管理" class="headerlink" title="openhpc节点用户管理"></a>openhpc节点用户管理</h3><h4 id="加用户"><a href="#加用户" class="headerlink" title="加用户"></a>加用户</h4><p>获取root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root] # useradd -m username</span><br><span class="line">[root] # passwd username</span><br><span class="line">[root] # wwsh file resync passwd shadow group</span><br></pre></td></tr></table></figure>
+<p>-m 参数是为了在home目录下创建用户文件夹；wwsh 与计算节点同步用户数据。</p>
+<p>将一个已有用户 xxx 增加到一个已有用户组 lab 中，使此用户组成为该用户的附加用户组，可以使用带 -a 参数的 usermod  指令。-a 代表 append， 也就是将用户添加到新用户组中而不必离开原有的其他用户组。不过需要与 -G 选项配合使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -a -G lab xxx</span><br></pre></td></tr></table></figure>
+<p>!当wwsh同步用户名等信息到计算节点失败时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pdsh -w cn[节点名字]</span><br><span class="line">rm &#x2F;tmp&#x2F;.wwgetfiles_timestamp</span><br><span class="line">&#x2F;warewulf&#x2F;bin&#x2F;wwgetfiles</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><p>获取root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root] # userdel username</span><br><span class="line">[root] # more &#x2F;etc&#x2F;passwd</span><br><span class="line">[root] # find &#x2F; -name &quot;*username*&quot;</span><br><span class="line">[root] # rm -rf dirname</span><br></pre></td></tr></table></figure>
+<p>查看passwd是为了再次确认要删除该用户，接下来是找到与该用户有关的文件，并彻底删除。</p>
+<h3 id="openhpc节点开机"><a href="#openhpc节点开机" class="headerlink" title="openhpc节点开机"></a>openhpc节点开机</h3><p>首先开启管理节点，使用管理节点的BMC口进入主板系统，也就是DELL的iDRAC，ip地址为<br>(<a target="_blank" rel="noopener" href="https://202.38.220.14/">https://202.38.220.14</a>).<br>进入后在面板中选择开机。</p>
+<p>等待机器启动后（约3分钟）。以管理员用户进入管理节点系统，加载计算节点相关的机器参数：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># source /home/mgt/openhpc.sh</span></span><br></pre></td></tr></table></figure>
+<p>其中的<code>nodeinfo.sh</code>保存的是每一个计算节点的bmc和通信ip信息。</p>
+<p>循环开启每个节点：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># wwsh</span></span><br><span class="line">Warewulf&gt; ipmi poweron cn[99101-99120]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>确定计算节点全部开启。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># pdsh -w cn[99101-99120,98101-98110] uptime</span></span><br></pre></td></tr></table></figure>
+
+<p>确定所有可用节点均开机后，开启计算节点的<code>slurmd</code>服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># pdsh -w cn[99101-99120,98101-98110] systemctl start slurmd</span></span><br></pre></td></tr></table></figure>
+
+<p>再开启管理节点<code>slurmctld</code>服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># systemctl restart slurmctld</span></span><br></pre></td></tr></table></figure>
+
+<p>（optional？）按节点开启节点检查(health check)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># pdsh -w c1 &quot;/usr/sbin/nhc-genconf -H &#x27;*&#x27; -c -&quot; | dshbak -c</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="openhpc集群节点关机"><a href="#openhpc集群节点关机" class="headerlink" title="openhpc集群节点关机"></a>openhpc集群节点关机</h3><p>以root进入管理节点，加载计算节点相关的机器参数：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># source /home/mgt/openhpc.sh</span></span><br></pre></td></tr></table></figure>
+<p>其中的<code>nodeinfo.sh</code>保存的是每一个计算节点的bmc和通信ip信息。</p>
+<p>循环关闭每个节点：<br>与上文开启类似poweron 改为poweroff即可。</p>
+<p>关闭等待计算节点全部关闭后，<code>shutdown -h now</code>关闭管理节点。</p>
+<h3 id="Warewulf-CentOS-slurm增加节点"><a href="#Warewulf-CentOS-slurm增加节点" class="headerlink" title="Warewulf+CentOS+slurm增加节点"></a>Warewulf+CentOS+slurm增加节点</h3><p>以新到的jp机器为例，增加四个节点。</p>
+<h4 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h4><p>首先要对硬件进行BMC口的ip配置，开机进入BIOS，配置BMC口ip如下所示。<br>配置好后，确保机器可以ping到该ip下，则表示BMC设置成功。</p>
+<p>设置机器的启动方式为pxe启动。</p>
+<p>设置默认关闭机器的超线程机制，可以牺牲一些效率，使得机器的损耗减少。</p>
+<h4 id="bmc设置配置"><a href="#bmc设置配置" class="headerlink" title="bmc设置配置"></a>bmc设置配置</h4><p>配置完以上硬件信息后，可以通过bmc的ip地址登录到bmc系统上查看系统状态和配置bmc用户密码。<br>但是bmc的网段为<code>50.1.0.0/16</code>，需要通过代理转发。</p>
+<p>需要在自己机器上开启socks客户端，转发(B say no say.)</p>
+<p>在bmc的配置中将eth1口关闭，乖比NCSI服务，否则会在这个端口分发系统内核启动文件。</p>
+<h4 id="环境加载"><a href="#环境加载" class="headerlink" title="环境加载"></a>环境加载</h4><p>四个节点名称分别为<code>cn99105~cn99108</code>，名称和ip以及BMC的管理端口ip分别填入<code>/home/mgt/nodeinfo</code>中，以便快速加载。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># jp machine</span><br><span class="line">c_name[35]=cn99105; c_ip[35]=10.1.99.105; c_bmc[35]=50.1.99.105</span><br><span class="line">c_name[36]=cn99106; c_ip[36]=10.1.99.106; c_bmc[36]=50.1.99.106</span><br><span class="line">c_name[37]=cn99107; c_ip[37]=10.1.99.107; c_bmc[37]=50.1.99.107</span><br><span class="line">c_name[38]=cn99108; c_ip[38]=10.1.99.108; c_bmc[38]=50.1.99.108</span><br></pre></td></tr></table></figure>
+
+<p>加载集群配置环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># source openhpc.sh</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查找和增加节点"><a href="#查找和增加节点" class="headerlink" title="查找和增加节点"></a>查找和增加节点</h4><p>使用warewulf的<code>wwnodescan</code>查找节点。</p>
+<p>首先开启节点查找请求：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># wwnodescan --netdev=$&#123;eth_provision&#125; --ipaddr=$&#123;c_ip[35]&#125; --netmask=$&#123;internal_netmask&#125; \</span></span><br><span class="line">--vnfs=centos7.5 --bootstrap=`uname -r` --listen=<span class="variable">$&#123;sms_eth_internal&#125;</span> <span class="variable">$&#123;c_name[35]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>请求等待过程中，使用BMC管理开启对应机器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># ipmitool -E -I lanplus -H $&#123;c_bmc[35]&#125; -U $&#123;bmc_username&#125; chassis power on</span></span><br></pre></td></tr></table></figure>
+
+<p>pxe开机过程中会在网络中查找启动引导，找到后<code>wwnodescan</code>的窗口会显示找到该节点。</p>
+<p>按照这样的方式手动增加每一个节点。</p>
+<p>增加这些节点后，使用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] <span class="comment"># wwsh node set cn99107 --groupadd jp</span></span><br></pre></td></tr></table></figure>
+<p>来将节点加入warewulf指定组做统一管理。</p>
+<h4 id="after-nodefind"><a href="#after-nodefind" class="headerlink" title="after_nodefind"></a>after_nodefind</h4><p>成功加入节点后，使用<code>/home/mgt/after_nodefind.sh</code>运行后续配置，其中包括了一些内核配置。<br>最为关键的是，该步骤重新识别所有的需要同步文件的计算节点列表，如果不做该步骤，则文件无法同步。</p>
+<h4 id="重启新增节点"><a href="#重启新增节点" class="headerlink" title="重启新增节点"></a>重启新增节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] # ipmitool -E -I lanplus -H $&#123;c_bmc[35]&#125; -U $&#123;bmc_username&#125; chassis power reset</span><br></pre></td></tr></table></figure>
+<h4 id="slurm配置"><a href="#slurm配置" class="headerlink" title="slurm配置"></a>slurm配置</h4><p>slurm是集群的计算管理软件。在加入新机器后，需要在配置文件中加入新机器的信息。</p>
+<p>在NODES部分增加节点信息（参考已有节点，若遇到硬件差别很大的机器，联系客服人员寻求帮助）。</p>
+<p><code>pdsh -w cn99105 systemctl start slurmd</code>开启节点的slurmd,(可以for来开启多个节点slurmd)，再用<code>systemctl restart slurmctld</code>重启管理节点的slurmctld客户端服务。</p>
+<p>在集群环境中，slurm的主客关系为，计算节点为服务器端，管理节点作为客户端想计算节点请求当前任务<br>的状态信息。</p>
+<p>使用<code>sinfo -Nel</code>查看节点信息，若节点为down，<br>则使用<code>scontrol update nodename=cn99105 state=resume</code>开启这个节点状态。</p>
+<h5 id="节点状态显示drain"><a href="#节点状态显示drain" class="headerlink" title="节点状态显示drain"></a>节点状态显示drain</h5><p>用sinfo查看信息的时候看到部分节点状态总是 drain</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root] # scontrol update NodeName&#x3D;&lt;node&gt; State&#x3D;DOWN Reason&#x3D;hung_completing</span><br><span class="line">[root] # scontrol update NodeName&#x3D;&lt;node&gt; State&#x3D;resume</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="（Optional）用户组管理"><a href="#（Optional）用户组管理" class="headerlink" title="（Optional）用户组管理"></a>（Optional）用户组管理</h3><p>实验室用户对所有节点都有使用权限，所以增加一个<code>labuser</code>用户组，对实验室用户都加入这个组。<br>还分别建立了<code>admin</code>组用于管理员和其节点分区，还有<code>testuser</code>用户短期实用用户，只开放small分区以供提交，两周后收回帐号密码。</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a target="_blank" rel="noopener" href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2020/08/20/cluster-users/">cmp集群：用户手册</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/01/slurm-running-matlab/">使用slurm在集群上使用matlab</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/11/07/cluster11-users/">hpc集群：用户手册</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/11/02/cluster11-admin/">hpc集群管理手册</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/git%E7%9A%84%E4%BD%BF%E7%94%A8/">git的使用</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E6%95%99%E7%A8%8B/">文章发布教程</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Q-A/">Q&amp;A</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/%E9%9B%86%E7%BE%A4%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">集群使用手册</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://github.com/scut-ccmp">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://dribbble.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-dribbble"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://telegram.org/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-telegram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.behance.net/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-behance"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://500px.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-500px"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:test@example.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
