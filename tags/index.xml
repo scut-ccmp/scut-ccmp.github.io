@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Lab SCUT-CCMP DOCUMENTATION BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 07 Nov 2018 15:07:34 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>11</title>
+      <link>/tags/11/</link>
+      <pubDate>Wed, 07 Nov 2018 15:07:34 +0800</pubDate>
+      
+      <guid>/tags/11/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Admin</title>
+      <link>/tags/admin/</link>
+      <pubDate>Fri, 02 Nov 2018 09:54:13 +0800</pubDate>
+      
+      <guid>/tags/admin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cluster</title>
+      <link>/tags/cluster/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Doc</title>
+      <link>/tags/doc/</link>
+      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/doc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>/tags/docker/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Matlab</title>
+      <link>/tags/matlab/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/matlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>/tags/nginx/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pyyabc</title>
+      <link>/tags/pyyabc/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pyyabc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>/tags/server/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software</title>
+      <link>/tags/software/</link>
+      <pubDate>Wed, 10 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tags/software/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>System</title>
+      <link>/tags/system/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>User</title>
+      <link>/tags/user/</link>
+      <pubDate>Wed, 07 Nov 2018 15:07:34 +0800</pubDate>
+      
+      <guid>/tags/user/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vasp</title>
+      <link>/tags/vasp/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/vasp/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

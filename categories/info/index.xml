@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Info on Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+    <link>/categories/info/</link>
+    <description>Recent content in Info on Lab SCUT-CCMP DOCUMENTATION BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 24 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/info/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>天河帐号使用列表</title>
+      <link>/posts/tianhe2-user/</link>
+      <pubDate>Wed, 24 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tianhe2-user/</guid>
+      <description>帐号密钥申请和管理指南 Account User xbyang_1 廖jh xbyang_2 周xy xbyang_3 谢wq xbyang_4 程yh xbyang_5 何cc 刘lu yjzhao_1 彭yh 廖cw yjzhao_2 蒋yl yjzhao_3 黄mx 林jy yjzhao_4 杨sq 李dz yjzhao_5 余js 陈wy 用户</description>
+    </item>
+    
+  </channel>
+</rss>

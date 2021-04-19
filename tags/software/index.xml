@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software on Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+    <link>/tags/software/</link>
+    <description>Recent content in Software on Lab SCUT-CCMP DOCUMENTATION BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 10 Oct 2018 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>软件列表</title>
+      <link>/posts/sagar/</link>
+      <pubDate>Wed, 10 Oct 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/posts/sagar/</guid>
+      <description>Sagar 仓库地址, 手册地址 pyvaspflow 仓库地址, 手册地址 开发协助 有使用的问题，将问题整理，包含输入和错误提示发至issue.</description>
+    </item>
+    
+  </channel>
+</rss>

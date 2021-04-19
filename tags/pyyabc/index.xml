@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pyyabc on Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+    <link>/tags/pyyabc/</link>
+    <description>Recent content in Pyyabc on Lab SCUT-CCMP DOCUMENTATION BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/pyyabc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>常见问题及解答</title>
+      <link>/posts/trouble_reshooting/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/trouble_reshooting/</guid>
+      <description>Q1: VASP计算时出现强制退出, 内存爆炸的问题 A1: 可以通过修改~/.barshrc文件 用户~/.bashrc配置 为使得VASP进行计算时能够处理</description>
+    </item>
+    
+  </channel>
+</rss>

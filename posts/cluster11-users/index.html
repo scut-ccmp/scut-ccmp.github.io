@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		
+		<meta name="generator" content="Hugo 0.54.0" />
+		<title>hpc集群：用户手册 &middot; Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/images/favicon/site.webmanifest">
+		<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='/posts'>Archive</a>
+	<a href='/tags'>Tags</a>
+	<a href='/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        hpc集群：用户手册
+                    </h1>
+                    <h2 class="headline">
+                    Nov 7, 2018 15:07
+                    · 192 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="/tags/cluster">cluster</a>
+                          
+                              <a href="/tags/user">user</a>
+                          
+                              <a href="/tags/11">11</a>
+                          
+                              <a href="/tags/system">system</a>
+                          
+                      
+                      
+                      </span>
+                      
+                      Author: <span>qiusb</span>
+                      
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    
+
+<h1 id="sge">SGE</h1>
+
+<h2 id="1-任务提交">1. 任务提交</h2>
+
+<pre><code>qsub jobname.sh
+</code></pre>
+
+<p>提交到指定节点</p>
+
+<pre><code>qsub -q nodename jobname.sh
+</code></pre>
+
+<h2 id="2-任务查询">2. 任务查询</h2>
+
+<p>查看用户任务</p>
+
+<pre><code>qstat
+</code></pre>
+
+<p>查看所有任务</p>
+
+<pre><code>qstat -u “*”
+</code></pre>
+
+<p>任务状态</p>
+
+<p>qw    等待</p>
+
+<p>Eqw   任务出差</p>
+
+<p>r     运行中</p>
+
+<p>dr    节点挂了，删除任务出现此状态（节点重启，或者强制删除任务）</p>
+
+<h2 id="3-任务删除">3. 任务删除</h2>
+
+<pre><code>qdel numbe_job
+
+qdel -f numbe_job     #强制删除
+</code></pre>
+
+<h2 id="4-查看主机状态和负荷">4. 查看主机状态和负荷</h2>
+
+<pre><code>qhost
+</code></pre>
+
+<h2 id="5-修改用户计算资源限制">5. 修改用户计算资源限制</h2>
+
+<pre><code>su
+qconf -mrqs
+</code></pre>
+
+<h1 id="任务脚本参考">任务脚本参考</h1>
+
+<p>job.sh</p>
+
+<pre><code>#! /bin/sh              
+#$ -S /bin/sh           
+#$ -cwd                 
+#$ -V                   
+#$ -N jobname           
+#$ -pe orte 20         
+#$ -j y                 
+     
+mpirun -np ${NSLOTS} vasp5.4.4-std                
+</code></pre>
+
+<p>orte 后是核数，11里面是每个计算节点20核，所以使用20的整数倍</p>
+
+<p>more SGE:
+ <a href="http://blog.chinaunix.net/uid-24404943-id-4119431.html">http://blog.chinaunix.net/uid-24404943-id-4119431.html</a></p>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    <script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      availableFonts : ["STIX"],
+      preferredFont : "STIX",
+      webFont : "STIX-Web",
+      imageFont : null
+    }
+  });
+</script>
+
+<style>
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #ff9933;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script>
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+    
+    <p class="small">
+    
+       © Copyright 2021 <i class="fa fa-heart" aria-hidden="true"></i> 
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

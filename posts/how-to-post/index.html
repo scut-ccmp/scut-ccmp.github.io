@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		
+		<meta name="generator" content="Hugo 0.54.0" />
+		<title>内容的发布与格式 &middot; Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/images/favicon/site.webmanifest">
+		<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='/posts'>Archive</a>
+	<a href='/tags'>Tags</a>
+	<a href='/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        内容的发布与格式
+                    </h1>
+                    <h2 class="headline">
+                    Oct 15, 2018 00:00
+                    · 604 words
+                    · 2 minute read
+                      <span class="tags">
+                      
+                      </span>
+                      
+                      Author: <span>unkcpz, hecc</span>
+                      
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    
+
+<h2 id="内容的发布与语法格式">内容的发布与语法格式</h2>
+
+<p>该文主要内容为给出在本网站中发布的内容所要遵循的格式，有需要发布文章的同学和老师可以按照该内容准备好
+<code>.md</code>文件用于发布。<code>Markdown</code>格式简单，易于编辑和修改，可以对特定的公式和代码块进行格式处理和
+高亮，是非常简单易用的文本发布格式。</p>
+
+<p>这篇post的源代码在<a href="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/content/posts/how-to-post.md">source-code</a>处查看。</p>
+
+<h3 id="markdown-的语法和亮片"><code>markdown</code>的语法和亮片</h3>
+
+<p>具体使用的详情请参考<a href="https://www.markdowntutorial.com/">md tutorial</a>， <a href="https://daringfireball.net/projects/markdown/">md official</a>。
+下面只介绍最为常用的一些模式。</p>
+
+<h3 id="公式的编辑">公式的编辑</h3>
+
+<h4 id="内嵌公式">内嵌公式</h4>
+
+<p>使用一下命令输入内嵌公式，这种方式依赖于 <a href="https://yihui.name">yihui-mathjs</a>提供的js脚本。</p>
+
+<pre><code class="language-markdown">内嵌公式`$\alpha + \beta = \frac{1}{\sqrt{x_0}}$`
+</code></pre>
+
+<p>得到下列内容：</p>
+
+<p>{内嵌公式<code>$\alpha + \beta = \frac{1}{\sqrt{x_0}}$</code>}</p>
+
+<h4 id="独立公式">独立公式</h4>
+
+<pre><code class="language-markdown">独立公式:
+
+`$$\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}} = 0$$`
+</code></pre>
+
+<p>得到下列内容：</p>
+
+<p>{
+独立公式:</p>
+
+<p><code>$$\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}} = 0$$</code>
+}</p>
+
+<h3 id="代码的编辑">代码的编辑</h3>
+
+<p>代码部分通过特有的css样式装饰，以区别与普通内容，同时支持原格式的缩进和特定语言的高亮。
+所需要的技术依赖于<code>markdown</code>的内容转换和<code>pygments</code>的高亮支持。</p>
+
+<h4 id="python代码">python代码</h4>
+
+<pre><code class="language-python"># This is a hello name
+def hello(name):
+  print(&quot;hello {:s}&quot;.format(name))
+  return
+</code></pre>
+
+<h4 id="matlab代码">matlab代码</h4>
+
+<pre><code class="language-matlab">% --- Executes on button press in load_img2.
+function load_img2_Callback(hObject, eventdata, handles)
+% hObject    handle to load_img2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Load and display second image from a directory
+[img2_name, img2_pathname] = uigetfile({'*.jpg;*.png;*.bmp'}, 'Select an image file');
+if (isequal(img2_name,0) || isequal(img2_pathname,0))
+    warndlg('You need to select an image.', 'Please select images.');
+else
+    axes(handles.axes2);
+    hold off;
+    full_img2_name = fullfile(img2_pathname, img2_name);
+    img2 = imreadAutoRot(full_img2_name);
+    imshow(img2);
+    setappdata(handles.axes2, 'axes2Image', img2);
+
+    % Prepare selection field for plotting (plot it invisible for the time
+    % being)
+    hold on;
+    rectangle_handle2 = rectangle('Position', [0 0 1 1], 'Visible', 'off');
+    setappdata(handles.axes2, 'axes2Rectangle', rectangle_handle2);
+end
+</code></pre>
+
+<h4 id="golang代码">golang代码</h4>
+
+<pre><code class="language-go">// file: primes.go
+// package primes generate prime numbers
+package primes
+
+func generatePrimes(m int) []int {
+	_ = m
+	return []int{1, 2}
+}
+</code></pre>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    <script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      availableFonts : ["STIX"],
+      preferredFont : "STIX",
+      webFont : "STIX-Web",
+      imageFont : null
+    }
+  });
+</script>
+
+<style>
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #ff9933;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script>
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+    
+    <p class="small">
+    
+       © Copyright 2021 <i class="fa fa-heart" aria-hidden="true"></i> 
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>
