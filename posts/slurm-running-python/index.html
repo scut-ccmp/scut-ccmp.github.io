@@ -53,7 +53,7 @@
                     </h1>
                     <h2 class="headline">
                     Jul 9, 2022 00:00
-                    · 496 words
+                    · 494 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -73,29 +73,28 @@
                 <section id="post-body">
                     <h2 id="1-conda-环境初始化使用普通用户lfpara作为演示">1. Conda 环境初始化(使用普通用户lfpara作为演示)</h2>
 <p>输入conda init，会自动将conda的初始环境写入~/.bashrc文件，随后source ~/.bashrc进入conda环境（首次登录输入，后续无需输入）。（base表示处于conda环境）</p>
-<p><img src="../../static/images/python/1" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/1" alt="这是图片"></p>
 <p>如需退出conda环境输入conda deactivate</p>
-<p><img src="../../static/images/python/2" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/2" alt="这是图片"></p>
 <h2 id="2conda-创建python环境需处于conda环境">2、Conda 创建python环境（需处于conda环境）</h2>
 <p>conda create -n test python=3.7（创建名为test的环境，python版本为3.7）</p>
-<p><img src="../../static/images/python/3" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/3" alt="这是图片"></p>
 <p>所创建的环境位于个人家目录的.conda/envs目录下</p>
-<p><img src="../../static/images/python/4" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/4" alt="这是图片"></p>
 <p>激活test环境：conda activate test（环境从base变成test）</p>
-<p><img src="../../static/images/python/5" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/5" alt="这是图片"></p>
 <p>test所独有的bin和lib位于/share/home/lfpara/.conda/envs/test里面（lfpara用户）</p>
-<p><img src="../../static/images/python/6" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/6" alt="这是图片"></p>
 <p>处于conda环境时可以使用pip安装自身所需要的库</p>
-<p><img src="../../static/images/python/7" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/7" alt="这是图片"></p>
 <p>退出test环境：conda deactivate</p>
-<p><img src="../../static/images/python/8" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/8" alt="这是图片"></p>
 <h2 id="3使用conda环境提交队列脚本">3、使用conda环境提交队列脚本</h2>
 <p>slurm脚本模板为<code>python_job.sh</code>：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#SBATCH -N 1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH -n 2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH -n 40</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH -o output</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH --nodelist=cn96102</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH -p sonmi</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>cd $SLURM_SUBMIT_DIR
@@ -103,8 +102,8 @@
 </span></span><span style="display:flex;"><span>source activate test（修改成需要的环境名）
 </span></span><span style="display:flex;"><span>python t.py
 </span></span></code></pre></div><p><!-- raw HTML omitted -->ps: 提交任务时退出conda环境再运行脚本（conda decativate + sbatch script）<!-- raw HTML omitted --></p>
-<p><img src="../../static/images/python/9" alt="这是图片"></p>
-<p><img src="../../static/images/python/10" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/9" alt="这是图片"></p>
+<p><img src="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/static/images/python/10" alt="这是图片"></p>
 
                 </section>
             </article>
