@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		
+		<meta name="generator" content="Hugo 0.101.0" />
+		<title>内容的发布与格式 &middot; Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/images/favicon/site.webmanifest">
+		<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='/posts'>Archive</a>
+	<a href='/tags'>Tags</a>
+	<a href='/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        内容的发布与格式
+                    </h1>
+                    <h2 class="headline">
+                    Oct 15, 2018 00:00
+                    · 604 words
+                    · 2 minute read
+                      <span class="tags">
+                      
+                      </span>
+                      
+                      Author: <span>unkcpz, hecc</span>
+                      
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <h2 id="内容的发布与语法格式">内容的发布与语法格式</h2>
+<p>该文主要内容为给出在本网站中发布的内容所要遵循的格式，有需要发布文章的同学和老师可以按照该内容准备好
+<code>.md</code>文件用于发布。<code>Markdown</code>格式简单，易于编辑和修改，可以对特定的公式和代码块进行格式处理和
+高亮，是非常简单易用的文本发布格式。</p>
+<p>这篇post的源代码在<a href="https://raw.githubusercontent.com/scut-ccmp/lab-blog-source/master/content/posts/how-to-post.md">source-code</a>处查看。</p>
+<h3 id="markdown的语法和亮片"><code>markdown</code>的语法和亮片</h3>
+<p>具体使用的详情请参考<a href="https://www.markdowntutorial.com/">md tutorial</a>， <a href="https://daringfireball.net/projects/markdown/">md official</a>。
+下面只介绍最为常用的一些模式。</p>
+<h3 id="公式的编辑">公式的编辑</h3>
+<h4 id="内嵌公式">内嵌公式</h4>
+<p>使用一下命令输入内嵌公式，这种方式依赖于 <a href="https://yihui.name">yihui-mathjs</a>提供的js脚本。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>内嵌公式`$\alpha + \beta = \frac{1}{\sqrt{x_0}}$`
+</span></span></code></pre></div><p>得到下列内容：</p>
+<p>{内嵌公式<code>$\alpha + \beta = \frac{1}{\sqrt{x_0}}$</code>}</p>
+<h4 id="独立公式">独立公式</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>独立公式:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`$$\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}} = 0$$`</span>
+</span></span></code></pre></div><p>得到下列内容：</p>
+<p>{
+独立公式:</p>
+<p><code>$$\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}} = 0$$</code>
+}</p>
+<h3 id="代码的编辑">代码的编辑</h3>
+<p>代码部分通过特有的css样式装饰，以区别与普通内容，同时支持原格式的缩进和特定语言的高亮。
+所需要的技术依赖于<code>markdown</code>的内容转换和<code>pygments</code>的高亮支持。</p>
+<h4 id="python代码">python代码</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># This is a hello name</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>(name):
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;hello </span><span style="color:#e6db74">{:s}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(name))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>
+</span></span></code></pre></div><h4 id="matlab代码">matlab代码</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-matlab" data-lang="matlab"><span style="display:flex;"><span><span style="color:#75715e">% --- Executes on button press in load_img2.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">load_img2_Callback</span>(hObject, eventdata, handles)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">% hObject    handle to load_img2 (see GCBO)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">% handles    structure with handles and user data (see GUIDATA)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">% Load and display second image from a directory</span>
+</span></span><span style="display:flex;"><span>[img2_name, img2_pathname] = uigetfile({<span style="color:#e6db74">&#39;*.jpg;*.png;*.bmp&#39;</span>}, <span style="color:#e6db74">&#39;Select an image file&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (isequal(img2_name,<span style="color:#ae81ff">0</span>) <span style="color:#f92672">||</span> isequal(img2_pathname,<span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>    warndlg(<span style="color:#e6db74">&#39;You need to select an image.&#39;</span>, <span style="color:#e6db74">&#39;Please select images.&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    axes(handles.axes2);
+</span></span><span style="display:flex;"><span>    hold off;
+</span></span><span style="display:flex;"><span>    full_img2_name = fullfile(img2_pathname, img2_name);
+</span></span><span style="display:flex;"><span>    img2 = imreadAutoRot(full_img2_name);
+</span></span><span style="display:flex;"><span>    imshow(img2);
+</span></span><span style="display:flex;"><span>    setappdata(handles.axes2, <span style="color:#e6db74">&#39;axes2Image&#39;</span>, img2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">% Prepare selection field for plotting (plot it invisible for the time</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">% being)</span>
+</span></span><span style="display:flex;"><span>    hold on;
+</span></span><span style="display:flex;"><span>    rectangle_handle2 = rectangle(<span style="color:#e6db74">&#39;Position&#39;</span>, [<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;Visible&#39;</span>, <span style="color:#e6db74">&#39;off&#39;</span>);
+</span></span><span style="display:flex;"><span>    setappdata(handles.axes2, <span style="color:#e6db74">&#39;axes2Rectangle&#39;</span>, rectangle_handle2);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h4 id="golang代码">golang代码</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// file: primes.go
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// package primes generate prime numbers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">primes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">generatePrimes</span>(<span style="color:#a6e22e">m</span> <span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">m</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    <script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      availableFonts : ["STIX"],
+      preferredFont : "STIX",
+      webFont : "STIX-Web",
+      imageFont : null
+    }
+  });
+</script>
+
+<style>
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #ff9933;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script>
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+    
+    <p class="small">
+    
+       © Copyright 2022 <i class="fa fa-heart" aria-hidden="true"></i> 
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorial on Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+    <link>/categories/tutorial/</link>
+    <description>Recent content in tutorial on Lab SCUT-CCMP DOCUMENTATION BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 15 Oct 2018 00:00:00 +0000</lastBuildDate><atom:link href="/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>内容的发布与格式</title>
+      <link>/posts/how-to-post/</link>
+      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/how-to-post/</guid>
+      <description>内容的发布与语法格式 该文主要内容为给出在本网站中发布的内容所要遵循的格式，有需要发布文章的同学和老师可以按照该内容准备好 .md文件用于发布。</description>
+    </item>
+    
+    <item>
+      <title>Docker Nginx网页服务搭建（附服务器购买续费指南）</title>
+      <link>/posts/nginx-docker/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/nginx-docker/</guid>
+      <description>Docker Nginx 网页服务搭建 服务器租赁和续费 登录GigsGigs注册帐号并购买服务器。 这里购买的是CLOUDLET K1+ MEGA。购买时选择使用了CentO</description>
+    </item>
+    
+  </channel>
+</rss>

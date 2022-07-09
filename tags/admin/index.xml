@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>admin on Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+    <link>/tags/admin/</link>
+    <description>Recent content in admin on Lab SCUT-CCMP DOCUMENTATION BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 02 Nov 2018 09:54:13 +0800</lastBuildDate><atom:link href="/tags/admin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hpc集群管理手册</title>
+      <link>/posts/cluster11-admin/</link>
+      <pubDate>Fri, 02 Nov 2018 09:54:13 +0800</pubDate>
+      
+      <guid>/posts/cluster11-admin/</guid>
+      <description>用户管理 加用户 进入root useradd -m username passwd username rocks sync users rocks 是为了同步用户数据 userdel username #删除用户 more /etc/passwd #确认删除对了用户！！！ find / -name &amp;#34;*username*&amp;#34; #查找所有与用户相关信息 rm -rf</description>
+    </item>
+    
+    <item>
+      <title>cmp集群管理手册</title>
+      <link>/posts/cluster-admin/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cluster-admin/</guid>
+      <description>openhpc节点用户管理 加用户 获取root [root] # useradd -m username [root] # passwd username [root] # wwsh file resync passwd shadow group -m 参数是为了在home目录下创建用户文件夹；wwsh 与计算节点</description>
+    </item>
+    
+  </channel>
+</rss>
