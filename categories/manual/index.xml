@@ -27,6 +27,15 @@
     </item>
     
     <item>
+      <title>使用slurm在集群上使用julia</title>
+      <link>/posts/slurm-running-julia/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/slurm-running-julia/</guid>
+      <description>以任务的方式提交julia任务(recommoned) slurm脚本模板为job.sh： #!/bin/bash #SBATCH -J long-time #SBATCH -p sonmi_2 -N 1 -n 40 module load julia/1.8.5 echo &amp;#39;This program is running at&amp;#39; `hostname` julia -t 40 ./Operator-j-BLP-v2-applycutoff=1E-6-2023-3-15-V=3-longTime.jl ~</description>
+    </item>
+    
+    <item>
       <title>使用slurm在集群上使用matlab</title>
       <link>/posts/slurm-running-matlab/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>

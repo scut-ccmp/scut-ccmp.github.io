@@ -8,7 +8,7 @@
 		
 		
 		<meta name="generator" content="Hugo 0.101.0" />
-		<title>天河帐号使用列表 &middot; Lab SCUT-CCMP DOCUMENTATION BLOG</title>
+		<title>使用slurm在集群上使用julia &middot; Lab SCUT-CCMP DOCUMENTATION BLOG</title>
 		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/highlight.css">
@@ -49,92 +49,52 @@
             <article>
                 <header>
                     <h1>
-                        天河帐号使用列表
+                        使用slurm在集群上使用julia
                     </h1>
                     <h2 class="headline">
-                    Oct 24, 2018 00:00
-                    · 210 words
-                    · 1 minute read
+                    Apr 1, 2019 00:00
+                    · 524 words
+                    · 2 minute read
                       <span class="tags">
                       
                       
                           
-                              <a href="/tags/doc">doc</a>
-                          
                               <a href="/tags/cluster">cluster</a>
+                          
+                              <a href="/tags/julia">julia</a>
                           
                       
                       
                       </span>
                       
-                      Author: <span>unkcpz, qiusb</span>
+                      Author: <span>Huang weijie</span>
                       
                     </h2>
                 </header>
                 
                 <section id="post-body">
-                    <h2 id="帐号密钥申请和管理指南">帐号密钥申请和管理指南</h2>
-<table>
-<thead>
-<tr>
-<th>Account</th>
-<th>User</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>xbyang_1</td>
-<td>廖jh</td>
-</tr>
-<tr>
-<td>xbyang_2</td>
-<td>周xy</td>
-</tr>
-<tr>
-<td>xbyang_3</td>
-<td>谢wq</td>
-</tr>
-<tr>
-<td>xbyang_4</td>
-<td>程yh</td>
-</tr>
-<tr>
-<td>xbyang_5</td>
-<td>何cc 刘lu</td>
-</tr>
-<tr>
-<td>yjzhao_1</td>
-<td>彭yh  廖cw</td>
-</tr>
-<tr>
-<td>yjzhao_2</td>
-<td>蒋yl</td>
-</tr>
-<tr>
-<td>yjzhao_3</td>
-<td>黄mx   林jy</td>
-</tr>
-<tr>
-<td>yjzhao_4</td>
-<td>杨sq   李dz</td>
-</tr>
-<tr>
-<td>yjzhao_5</td>
-<td>余js  陈wy</td>
-</tr>
-</tbody>
-</table>
-<p>用户使用要求：</p>
-<ul>
-<li>用户自行保管登录私钥，切勿分享和外传。</li>
-<li>请用户自行管理自己使用的帐号。</li>
-<li>请用户不要在自己的帐号下帮他人提交任务。</li>
-</ul>
-<h2 id="私钥更新">私钥更新</h2>
-<p>管理员交接时，将私钥统一交接，登录到每一个用户认证新的公钥私钥对。</p>
-<h2 id="用户交接">用户交接</h2>
-<p>当用户转向另一个用户的时候，收回密钥，并更新公钥密钥对。</p>
-<p>同时删除帐号下所有数据。</p>
+                    <h2 id="以任务的方式提交julia任务recommoned">以任务的方式提交julia任务(recommoned)</h2>
+<p>slurm脚本模板为<code>job.sh</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#SBATCH -J long-time</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH -p sonmi_2 -N 1 -n 40 </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>module load julia/1.8.5
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;This program is running at&#39;</span>  <span style="color:#e6db74">`</span>hostname<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>julia -t <span style="color:#ae81ff">40</span> ./Operator-j-BLP-v2-applycutoff<span style="color:#f92672">=</span>1E-6-2023-3-15-V<span style="color:#f92672">=</span>3-longTime.jl
+</span></span><span style="display:flex;"><span>~      
+</span></span></code></pre></div><p>参数<code>julia -t</code>后面的数字可以julia使用的线程数目（并不是越多越快，具体原因可以参考ITensor文档里面的multithreading一节），数字后紧跟所要运行的<code>.jl</code>文件的文件名<!-- raw HTML omitted -->！！！注意和matlab不一样，julia要写后缀，否则会出错！！！<!-- raw HTML omitted -->。</p>
+<p>将脚本与要执行的<code>.jl</code>文件放在相同文件夹下，运行<code>sbatch ./job.sh</code>即可。</p>
+<h2 id="在管理节点使用交互式的模式进行julia运算only-recommend-for-test">在管理节点使用交互式的模式进行julia运算(only recommend for test)</h2>
+<h3 id="step-1">Step 1</h3>
+<p>首先使用<code>module load julia/1.8.5</code>
+此时，会进入加载julia可执行模块的到路径。</p>
+<h3 id="step-2">Step 2</h3>
+<p><code>julia -t -6</code>
+打开repl 模式的julia，可以在这里查看库函数的版本，也可以运行简单的测试程序。</p>
+<h2 id="julia-程序输出的slurm不会及时更新问题">julia 程序输出的slurm不会及时更新问题</h2>
+<p>建议在运行时间比较长的脚本里面使用<code>println</code>来输出一些量来反馈程序运行进度。
+因为在大型运算的脚本中，println的结果会被buffering，也就是被缓存，然后程序结束的时候一次性放出来，所以需要使用flush(stdout)，强制julia和repl交流，实时打印出缓存中的内容，然后清空缓存。</p>
 
                 </section>
             </article>
