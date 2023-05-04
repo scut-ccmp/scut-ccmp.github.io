@@ -18,24 +18,6 @@
     </item>
     
     <item>
-      <title>hpc集群：用户手册</title>
-      <link>/posts/cluster11-users/</link>
-      <pubDate>Wed, 07 Nov 2018 15:07:34 +0800</pubDate>
-      
-      <guid>/posts/cluster11-users/</guid>
-      <description>SGE 1. 任务提交 qsub jobname.sh 提交到指定节点 qsub -q nodename jobname.sh 2. 任务查询 查看用户任务 qstat 查看所有任务 qstat -u “*” 任务状态 qw 等待 Eqw 任务出差 r 运行中 dr 节点挂了，删除任务出现</description>
-    </item>
-    
-    <item>
-      <title>hpc集群管理手册</title>
-      <link>/posts/cluster11-admin/</link>
-      <pubDate>Fri, 02 Nov 2018 09:54:13 +0800</pubDate>
-      
-      <guid>/posts/cluster11-admin/</guid>
-      <description>用户管理 加用户 进入root useradd -m username passwd username rocks sync users rocks 是为了同步用户数据 userdel username #删除用户 more /etc/passwd #确认删除对了用户！！！ find / -name &amp;#34;*username*&amp;#34; #查找所有与用户相关信息 rm -rf</description>
-    </item>
-    
-    <item>
       <title>cmp集群管理手册</title>
       <link>/posts/cluster-admin/</link>
       <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>

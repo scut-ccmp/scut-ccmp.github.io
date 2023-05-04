@@ -53,8 +53,8 @@
                     </h1>
                     <h2 class="headline">
                     Oct 26, 2018 00:00
-                    · 901 words
-                    · 2 minute read
+                    · 1383 words
+                    · 3 minute read
                       <span class="tags">
                       
                       
@@ -119,10 +119,57 @@ for i in `ls` ; do sacctmgr modify user $i set GrpTRES=cpu=300 &lt; ../t; done
 <p>用sinfo查看信息的时候看到部分节点状态总是 drain</p>
 <pre tabindex="0"><code>[root] # scontrol update NodeName=&lt;node&gt; State=DOWN Reason=hung_completing
 [root] # scontrol update NodeName=&lt;node&gt; State=resume
-</code></pre><h3 id="optional用户组管理">（Optional）用户组管理</h3>
-<p>实验室用户对所有节点都有使用权限，所以增加一个<code>labuser</code>用户组，对实验室用户都加入这个组。
-还分别建立了<code>admin</code>组用于管理员和其节点分区，还有<code>testuser</code>用户短期实用用户，只开放small分区以供提交，两周后收回帐号密码。</p>
+</code></pre><h5 id="修改用户可用内存">修改用户可用内存</h5>
+<p>先进入root，</p>
+<pre tabindex="0"><code>edquota -u cenyj
+</code></pre><p>修改其中的hard项，具体每项的含义可以自行查询。</p>
+<h4 id="ipmi配置主要用于远程开关机">ipmi配置（主要用于远程开关机）：</h4>
+<h5 id="bmc配置命令">BMC配置命令</h5>
+<pre tabindex="0"><code>ipmitool lan print 1 #打印当前ipmi 地址配置信息。
+ipmitool lan set 1 ipsrc static  # 设置 id 1 为静态IP地址。
+ipmitool lan set 1 ipaddr ip  # 设置 IPMI 地址。
+ipmitool lan set 1 netmask 255.255.255.0 # 设置 IPMI 子网掩码。
+ipmitool lan set 1 defgw ipaddr ip # 设置 IPMI 网关。
 
+Ipmitool user list 1  # 显示 IPMI 用户列表。
+ipmitool user set name 2 admin #创建用户，一般服务器有默认的超级用户（root,admin,ADMIN）,可以直接修改超级用户的密码，不用重新创建。
+ipmitool user set password 3 lfpara2022..@ #创建密码
+ipmitool channel setaccess 1 3 callin=on ipmi=on link=on privilege=4 #开权限 
+ipmitool user list 1 # 查看chanenel1的用户信息
+</code></pre><p>获取当前的电源状态：</p>
+<pre tabindex="0"><code>ipmitool -I lan -H ip -U admin -P lfpara2022..@ power status
+</code></pre><p>开机：</p>
+<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P lfpara2022..@ power on #如果服务器已经是在开机的情况下，再执行这个命令，服务器是不会重启的
+</code></pre><p>重启：</p>
+<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P lfpara2022..@ power reset #注意：机器在关机的情况下，这个reset命令用不了的。
+</code></pre><p>冷重启：</p>
+<pre tabindex="0"><code>ipmitool  -I lanplus -H  ip -U admin -P lfpara2022..@ reset cold 
+</code></pre><p>关机：</p>
+<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P lfpara2022..@ power off
+</code></pre><p>具体的每台节点的<a href="">ip</a>。</p>
+<h4 id="一些重要的文件路径">一些重要的文件路径</h4>
+<p>软件的压缩包/项目文件放这里：</p>
+<pre tabindex="0"><code>/share/apps/softwares/
+</code></pre><p>软件对应的module模块的文件位置（需要配置该文件才能在module模块中使用）：</p>
+<pre tabindex="0"><code>/share/apps/modulefiles/
+</code></pre><p>slurm配置文件路径：</p>
+<pre tabindex="0"><code>/etc/slurm/slurm.conf
+/usr/lib/systemd/system/slurmd.service
+</code></pre><p>服务器登陆日志路径：</p>
+<pre tabindex="0"><code>/var/log/secure
+</code></pre><p>该网页的github项目：</p>
+<pre tabindex="0"><code>https://github.com/scut-ccmp/lab-blog-source
+</code></pre><h4 id="其他可能用到的命令">其他可能用到的命令：</h4>
+<p>查看当前网络配置/网关地址：</p>
+<pre tabindex="0"><code>netstat -r
+</code></pre><p>查看UDP/TCP的开放端口：</p>
+<pre tabindex="0"><code>netstat -nupl
+netstat -ntpl
+</code></pre><p>查看某个用户的所有进程：</p>
+<pre tabindex="0"><code>ps -u cenyj
+</code></pre><p>查看一级目录下的每个文件的硬盘占用：</p>
+<pre tabindex="0"><code>du -h --max-depth=1
+</code></pre>
                 </section>
             </article>
 
