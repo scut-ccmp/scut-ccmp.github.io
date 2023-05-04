@@ -53,8 +53,8 @@
                     </h1>
                     <h2 class="headline">
                     Aug 20, 2020 00:00
-                    · 1919 words
-                    · 4 minute read
+                    · 2048 words
+                    · 5 minute read
                       <span class="tags">
                       
                       
@@ -67,7 +67,7 @@
                       
                       </span>
                       
-                      Author: <span>unkcpz / hecc</span>
+                      Author: <span>unkcpz / hecc /cenyj</span>
                       
                     </h2>
                 </header>
@@ -78,15 +78,15 @@
 <p>现有的集群称为<!-- raw HTML omitted -->&lsquo;cmp集群&rsquo;<!-- raw HTML omitted -->，IP为<code>202.38.220.15:22</code>。</p>
 <h2 id="用户常用的操作">用户常用的操作</h2>
 <ul>
-<li>登录服务器, <code>windows</code> 用户使用 Xmanager 或者 MobaXterm, 他们都包含了登录服务器和上传下载文件的功能, qq群里面都可以下载, 使用文档自行百度吧.</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/ChangChunHe/Sundries/master/baidu-1.png" alt="">
-<img src="https://raw.githubusercontent.com/ChangChunHe/Sundries/master/baidu-2.jpg" alt=""></p>
-<ul>
-<li>你需要熟悉一些基本的 <code>linux</code> 操作, 基本教程的pdf版本也可有在qq群里面下载.</li>
+<li>
+<p>登录服务器, <code>windows</code> 用户使用 Xmanager 或者 MobaXterm, 他们都包含了登录服务器和上传下载文件的功能, qq群里面都可以下载, 使用文档自行百度吧.</p>
+</li>
+<li>
+<p>你需要熟悉一些基本的 <code>linux</code> 操作, 基本教程的pdf版本也可有在qq群里面下载.</p>
+</li>
 </ul>
 <h3 id="cmp集群分区信息">cmp集群分区信息</h3>
-<p>可以使用<code>sinfo</code>查询当前分区，当前有五个分区，有三类机器。</p>
+<p>可以使用<code>sinfo</code>查询当前分区，当前有五个分区，有四类机器。</p>
 <pre tabindex="0"><code>[hecc@cmp ~]$ sinfo
  PARTITION  AVAIL  TIMELIMIT   CPUS       MEMORY    NODES  STATE NODELIST
    super_q  up    5-00:00:00     12        32000        7  alloc cn[98101-98102,98104-98105,98107-98109]
@@ -100,6 +100,10 @@
    short_q  up       6:00:00     24        64000        1   idle cn99119
    wuzhou*  up    2-00:00:00     20       128000        7  alloc cn[97102-97103,97105-97106,97108-97110]
    wuzhou*  up    2-00:00:00     20       128000        2   idle cn[97104,97107]
+   sonmi_1  up    5-00:00:00     40       256000        3  allocated  cn[96101-96103]
+   sonmi_2  up    40-00:00:00    40       256000        2  allocated  cn[96104-96105]
+   sonmi_2  up    40-00:00:00    40       256000        1  idle       cn96106
+   sonmi_96* up   10-00:00:00    96       1000000       1  allocated  cn96100
 </code></pre><ul>
 <li>super_q: 每节点12个物理核，32G内存。在用节点9个。cn[98101-98109]</li>
 <li>test_q: 每节点12个物理核，32G内存。在用节点2个。cn[98110-98111]</li>
@@ -108,12 +112,18 @@
 <li>long_q: 每个节点24物理核，64G内存。在用节点4个。cn[99113-99116]</li>
 <li>short_q: 每节点24物理核，64G内存。在用节点4个。cn[99117-99120]</li>
 <li>wuzhou:  每个节点20物理核，128G内存。在用节点9个。cn[97102-97110]</li>
+<li>sonmi_1: 每个节点40个物理核，256G内存。在用节点3个。cn[96101-103]</li>
+<li>sonmi_2: 每个节点40个物理核，256G内存。在用节点3个。cn[96101-103]</li>
+<li>sonmi_96: 96个物理核，1T内存。cn96100</li>
 </ul>
 <p>每个分组有不同的任务时长限制，inter_q 主要是 <code>matlab</code> 脚本计算，可以申请1:24个核计算，避免申请一个节点却只有一个核计算的浪费；short_q时间较短，
 主要是vasp的测试任务和一些计算量小的任务。</p>
 <h2 id="vasp相关">vasp相关</h2>
 <ul>
-<li>赝势所在路径:<code>/opt/ohpc/pub/apps/vasp/pps</code></li>
+<li>加载vasp模块：
+<code>module load vasp/5.4.4-impi-mkl</code></li>
+<li>查看赝势所在路径:
+<code>echo $PPS_PATH</code></li>
 <li><code>vasp</code> 版本: 现有的是 5.4.4 和 5.4.1, 建议用5.4.4</li>
 <li>如果你需要特殊的版本可以联系管理员编译, 如果你可以自己编译那就更好了. 集群上装了 <code>intel</code> 的编译器, <code>mkl</code> 数学库, 大家有兴趣看有自己研究一下.
 建议使用 <code>module load intel-compiler/2018_update4</code> 的2018的编译器 和 <code>module load intel/mkl/2019_update5</code> 的数学库.</li>
@@ -151,40 +161,42 @@
 如果你希望在使用 <code>pyvasp</code> 的时候, 自动生成的脚本里面也加入这句话, 只需
 要在 <code>config.json</code> 文件里面的 <code>prepend</code> 里面加入这句话就可以了.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;potcar_path&#34;</span>: {<span style="color:#f92672">&#34;paw_PBE&#34;</span>: <span style="color:#e6db74">&#34;/home/hecc/paw_PBE&#34;</span>, <span style="color:#f92672">&#34;paw_LDA&#34;</span>: <span style="color:#e6db74">&#34;/opt/ohpc/pub/apps/vasp/pps/paw_LDA&#34;</span>, <span style="color:#f92672">&#34;paw_PW91&#34;</span>: <span style="color:#e6db74">&#34;/opt/ohpc/pub/apps/vasp/pps/paw_PW91&#34;</span>, <span style="color:#f92672">&#34;USPP_LDA&#34;</span>: <span style="color:#e6db74">&#34;/opt/ohpc/pub/apps/vasp/pps/USPP_LDA&#34;</span>, <span style="color:#f92672">&#34;USPP_PW91&#34;</span>: <span style="color:#e6db74">&#34;/opt/ohpc/pub/apps/vasp/pps/USPP_PW91&#34;</span>}, <span style="color:#f92672">&#34;job&#34;</span>: {<span style="color:#f92672">&#34;prepend&#34;</span>: <span style="color:#e6db74">&#34;module load vasp/5.4.4-impi-mkl;\necho &#39;This program is running at&#39;  `hostname`&#34;</span>, <span style="color:#f92672">&#34;exec&#34;</span>: <span style="color:#e6db74">&#34;mpirun -n ${SLURM_NPROCS} vasp_std&#34;</span>,<span style="color:#f92672">&#34;append&#34;</span>:<span style="color:#e6db74">&#34;exit&#34;</span>}}
-</span></span></code></pre></div><h2 id="wuzhou-节点">wuzhou 节点</h2>
-<p>由于 <code>wuzhou</code> 节点接入集群比较特殊, 所以提交到 <code>wuzhou</code> 节点上的任务脚本会有一点差别</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#SBATCH -J task2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#SBATCH -p wuzhou -N 1 -n 20</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># need source environment variables</span>
-</span></span><span style="display:flex;"><span>source /opt/ohpc/pub/mpi/intel/parallel_studio_xe_2018_update4/bin/compilervars.sh intel64
-</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$PATH<span style="color:#e6db74">:/opt/ohpc/pub/apps/vasp/5.4.4-impi-mkl&#34;</span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;This program is running at&#39;</span>  <span style="color:#e6db74">`</span>hostname<span style="color:#e6db74">`</span>
-</span></span><span style="display:flex;"><span>mpirun -n <span style="color:#e6db74">${</span>SLURM_NPROCS<span style="color:#e6db74">}</span> vasp_std
-</span></span></code></pre></div><p>类似地, 如果你想运行 <code>matlab</code> , 使用 <code>module show </code> 可以看到该 <code>module</code> 的一些具体信息, 例如:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>module show matlab/R2019a
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------
-</span></span><span style="display:flex;"><span>   /opt/ohpc/pub/modulefiles/matlab/R2019a:
-</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------
-</span></span><span style="display:flex;"><span>conflict<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;gcc&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>prepend_path<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PATH&#34;</span>,<span style="color:#e6db74">&#34;/opt/ohpc/pub/apps/matlab/R2019a/bin&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>help<span style="color:#f92672">([[</span>This is a MATLAB R2019a<span style="color:#f92672">]])</span>
-</span></span></code></pre></div><p>所以你只需要把 <code>/opt/ohpc/pub/apps/matlab/R2019a/bin</code> 加入路径就可以使用 <code>matlab</code> 了.</p>
-<p>在工作目录中写入该文件，保存名称如<code>job.sh</code>,在命令行中运行以下命令即可提交任务到节点。
-其中的所有<code>#SBATCH</code>后面的参数均可以在命令行中分开指定。</p>
-<p><strong>请根据任务的需求认真确定和选择<code>-p</code>和<code>-n</code>两个参数!!!</strong></p>
+</span></span></code></pre></div><p><strong>请根据任务的需求认真确定和选择<code>-p</code>和<code>-n</code>两个参数!!!</strong></p>
 <p><strong>请根据任务的需求认真确定和选择准确评估任务上限时间!!!</strong></p>
+<p>在完成以上的job.sh文件后，可以通过以下命令将该任务提交到计算节点：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sbatch job.sh
 </span></span></code></pre></div><p><strong>若要提交任务到指定节点，或交互式运行任务，请参考管理员手册，或直接咨询管理员。</strong></p>
+<h2 id="集群上的其他模块">集群上的其他模块</h2>
+<p>你可以使用<code>module avail</code>查看集群上已安装的软件信息</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>------------------------------------------ /usr/share/Modules/modulefiles ------------------------------------------
+</span></span><span style="display:flex;"><span>dot         module-git  module-info modules     null        use.own
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--------------------------------------------- /share/apps/modulefiles ----------------------------------------------
+</span></span><span style="display:flex;"><span>atat/3.36                          julia/1.8.5                        spglib.1.0
+</span></span><span style="display:flex;"><span>bader                              lammps/20190807-intel              spglib.2.0
+</span></span><span style="display:flex;"><span>calypso                            lammps/20210612-intel              vasp/5.4.1-impi-mkl
+</span></span><span style="display:flex;"><span>gaussian/16                        latmat                             vasp/5.4.4-impi-mkl
+</span></span><span style="display:flex;"><span>intel-2023/intel-2023              matlab/R2015b                      vasp/6.1.2-impi-mkl
+</span></span><span style="display:flex;"><span>intel-2023/intel_compiler_2023.0.0 matlab/R2016b                      vasp/6.3.0-impi-mkl
+</span></span><span style="display:flex;"><span>intel-2023/intel_mkl_2023.0.0      matlab/R2019a                      vasp/6.3.0-new
+</span></span><span style="display:flex;"><span>intel-2023/intel_mpi_2021.8.0      matlab/R2019b                      vasp/6.4.0-impi-mkl
+</span></span><span style="display:flex;"><span>intel-compiler/2017_update7        multiwfn                           vasp2trace/v1
+</span></span><span style="display:flex;"><span>intel-compiler/2018_update4        QE/6.1.0-intel                     vesta
+</span></span><span style="display:flex;"><span>intel-compiler/2019_update5        QE/6.4.0-intel                     vtstscripts/935
+</span></span><span style="display:flex;"><span>intel-mkl/2017                     QE/6.5                             vtstscripts/964
+</span></span><span style="display:flex;"><span>intel-mkl/2018                     shengBTE
+</span></span></code></pre></div><p>类似vasp的使用，也可以通过<code>module load xxx</code> 加载这些软件，关于软件具体的使用应查阅官网。</p>
+<p><strong>若要提交任务到指定节点，或交互式运行任务，请参考管理员手册，或直接咨询管理员。</strong></p>
 <h3 id="optional-超算任务提交">(OPTIONAL) 超算任务提交</h3>
 <p>超算同样使用<code>SLURM</code>作为任务管理系统。</p>
 <h2 id="module软件模块挂载"><code>module</code>软件模块挂载</h2>
 <p>所有的软件为了保证编译和使用环境互不冲突，使用<code>module</code>作为模块管理软件。</p>
-<h3 id="常用命令">常用命令</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>查找可用模块
-</span></span><span style="display:flex;"><span>$ module avile
+<h3 id="常用其他命令">常用其他命令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>查看任务队列
+</span></span><span style="display:flex;"><span>$ squeue
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>取消正在计算的任务
+</span></span><span style="display:flex;"><span>$ scancel <span style="color:#ae81ff">85035</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>显示已加载模块
 </span></span><span style="display:flex;"><span>$ module list

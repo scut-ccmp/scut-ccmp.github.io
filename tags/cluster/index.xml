@@ -71,7 +71,7 @@
       <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/posts/cluster-admin/</guid>
-      <description>openhpc节点用户管理 加用户 获取root [root] # useradd -m username [root] # passwd username [root] # wwsh file resync passwd shadow group -m 参数是为了在home目录下创建用户文件夹；wwsh 与计算节点</description>
+      <description>新建用户 获取root [root] # useradd -m username [root] # passwd username [root] # usermod -a -G labuser test123 （将test123用户加入labuser组） [root] # sacctmgr add user test123 account=local （将新建test123用户加入</description>
     </item>
     
     <item>
