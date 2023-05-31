@@ -133,19 +133,19 @@ ipmitool lan set 1 defgw ipaddr ip # 设置 IPMI 网关。
 
 Ipmitool user list 1  # 显示 IPMI 用户列表。
 ipmitool user set name 2 admin #创建用户，一般服务器有默认的超级用户（root,admin,ADMIN）,可以直接修改超级用户的密码，不用重新创建。
-ipmitool user set password 3 lfpara2022..@ #创建密码
+ipmitool user set password 3 xxxxxx  #创建密码
 ipmitool channel setaccess 1 3 callin=on ipmi=on link=on privilege=4 #开权限 
 ipmitool user list 1 # 查看chanenel1的用户信息
 </code></pre><p>获取当前的电源状态：</p>
-<pre tabindex="0"><code>ipmitool -I lan -H ip -U admin -P lfpara2022..@ power status
+<pre tabindex="0"><code>ipmitool -I lan -H ip -U admin -P xxxxxx power status
 </code></pre><p>开机：</p>
-<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P lfpara2022..@ power on #如果服务器已经是在开机的情况下，再执行这个命令，服务器是不会重启的
+<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P xxxxxx power on #如果服务器已经是在开机的情况下，再执行这个命令，服务器是不会重启的
 </code></pre><p>重启：</p>
-<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P lfpara2022..@ power reset #注意：机器在关机的情况下，这个reset命令用不了的。
+<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P xxxxxx power reset #注意：机器在关机的情况下，这个reset命令用不了的。
 </code></pre><p>冷重启：</p>
-<pre tabindex="0"><code>ipmitool  -I lanplus -H  ip -U admin -P lfpara2022..@ reset cold 
+<pre tabindex="0"><code>ipmitool  -I lanplus -H  ip -U admin -P xxxxxx reset cold 
 </code></pre><p>关机：</p>
-<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P lfpara2022..@ power off
+<pre tabindex="0"><code>ipmitool -I lanplus -H ip -U admin -P xxxxxx power off
 </code></pre><p>具体的每台节点的<a href="https://github.com/scut-ccmp/lab-blog-source/blob/master/static/ip.txt">ip</a>。</p>
 <h4 id="一些重要的文件位置">一些重要的文件位置</h4>
 <p>软件的压缩包/项目文件放这里：</p>
